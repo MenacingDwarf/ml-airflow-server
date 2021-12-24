@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <title>Pet rating! Here is your score!</title>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</head>
+
+<body style="background-color:rgb(207, 200, 200);">
+  <nav class="navbar navbar-light bg-light mb-5">
+    <div class="container">
+      <a class="navbar-brand" href="#">PetFinder Helper</a>
+    </div>
+  </nav>
+  <center class="container">
+    <div class="card" style="width: 42rem;">
+    {% if temp_filename is defined %}
+        <img src="{{ url_for( 'static', filename= 'temp/'+temp_filename) }}" width="600" class="card-img-top"/>
+    {% endif %}
+    <div class="card-body">
+      <div class="mb-5">
+      <h5 class="card-text">Не можете оценить фото животного? Не беда! Мы можем!</h5>
+      </div>
+      {% if temp_filename is defined %}
+        <b style='color:black'><br>Your pet is <span style="color:green">{{image_score}}</span> out of <span style="color:red">100</span>!</b> 
+        <br> 
+        <p style='color:rgb(212, 150, 34)'>But we know your pet is still the best!</p> 
+      {% endif %}
+      <form action="/" method="POST" enctype='multipart/form-data' encoding='multipart/form-data'>
+        <div class="mb-3 mx-5">
+          <label for="formFile" class="form-label">Select the photo of your pet:</label>
+          <input class="form-control" type="file" name='pet_image' id="formFile">
+        </div>
+        <button type="submit" class="btn btn-primary">Upload</button>
+      </form>
+    </div>
+    </div>
+  </div>
+</center>
+</body>
+
+</html>
